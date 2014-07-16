@@ -1,14 +1,14 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
- 
+
       <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
- 
+
       <!-- Be sure to leave the brand out there if you want it shown -->
       <% if user_signed_in? %>
       <%= link_to "Sample", pins_path, class: "brand" %>
@@ -19,7 +19,7 @@
       <div class="nav-collapse collapse">
       	<ul class="nav">
           <% if user_signed_in? %>
-	        <li><%= link_to "Home", 'pin_path' %></li>
+	        <li><%= link_to "Home", pins_path %></li>
           <% else %>
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Added outfits", pins_path %></li>
@@ -33,8 +33,8 @@
             <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
             <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
           <% else %>
-            <li><%= form_for(:user, :url => session_path(:user), html: { class: "navbar-form pull-right form-inline" }) do |f| %>   
-        <%= f.text_field :email, :placeholder => "Email", class: "input-small" %> 
+            <li><%= form_for(:user, :url => session_path(:user), html: { class: "navbar-form pull-right form-inline" }) do |f| %>
+        <%= f.text_field :email, :placeholder => "Email", class: "input-small" %>
         <%= f.password_field :password, :placeholder => "Password", class: "input-small"  %>
         <label class="checkbox">
           <%= f.check_box :remember_me %><%= f.label :remember_me %>
@@ -47,4 +47,3 @@
     </div>
   </div>
 </div>
-
