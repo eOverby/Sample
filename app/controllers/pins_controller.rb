@@ -1,6 +1,4 @@
 class PinsController < ApplicationController
-  before_filter :authenticate_user!
-
   # GET /pins
   # GET /pins.json
 
@@ -8,7 +6,11 @@ class PinsController < ApplicationController
     # " I have found out where they can see everyone of the pins, but can figure out how to show their own pins"
     # SLM: This will first look for the current_user and then retrieve just his pins (instead of all the pins stored
     # in the database
-    @pins = current_user.pins.order("created_at desc").page(params[:page]).per_page(20)
+    if current_user && params[:scope] == 'me'
+      @pins = current_user.pins.order("created_at desc").page(params[:page]).per_page(20)
+    else
+      @pins = Pin.order("created_at desc").page(params[:page]).per_page(20)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
