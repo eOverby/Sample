@@ -1,0 +1,33 @@
+<% unless user_signed_in? %>
+	<div class="hero-unit">
+		<h1>Welcome to Sample!</h1>
+		<p>
+			The way to share your stories with pictures.
+		</p>
+		<p>
+			<div class="row-fluid">
+  <div class="span5"></div>
+  <div class="span5"><%= link_to "Login", new_user_session_path, class: "btn btn-primary btn-large" %>
+			<%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-large" %></div>
+</div>
+		</p>
+		<div class="row">
+  <div class="span7"><iframe title="YouTube video player" width="640" height="390" src="http://www.youtube.com/embed/endzf4013qc" frameborder="0" allowfullscreen></iframe></div>
+   <div class="span3"><h2>Sign up!</h2>
+
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+	<%= f.input :name %>
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+
+  <div><%= f.submit "Sign up" %></div>
+<% end %></div>
+	</div>
+</div>
+<% end %>
+
+
+
